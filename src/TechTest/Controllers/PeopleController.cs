@@ -19,12 +19,17 @@ namespace TechTest.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
+            
+           
             // TODO: Step 1
             //
             // Implement a JSON endpoint that returns the full list
             // of people from the PeopleRepository. If there are zero
             // people returned from PeopleRepository then an empty
             // JSON array should be returned.
+            
+            var person = PersonRepository.GetAll();
+            return Ok(person);
 
             throw new NotImplementedException();
         }
@@ -38,7 +43,16 @@ namespace TechTest.Controllers
             // from the PeopleRepository based on the id parameter.
             // If null is returned from the PeopleRepository with
             // the supplied id then a NotFound should be returned.
+            
+            var person = PersonRepository.Update(id);
 
+            if (person == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(person);
+            
             throw new NotImplementedException();
         }
 
@@ -53,6 +67,19 @@ namespace TechTest.Controllers
             // updated, the person should be returned from the endpoint.
             // If null is returned from the PeopleRepository then a
             // NotFound should be returned.
+            
+            if (personUpdate.Id != id)
+            {
+                return NotFound();
+            }
+
+            if (PersonRepository.Update(id) == null)
+            {
+                return NotFound();
+            }
+
+            PersonRepository.Update(id);
+            return RedirectToAction("Index");
 
             throw new NotImplementedException();
         }

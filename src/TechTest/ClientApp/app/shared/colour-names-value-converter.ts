@@ -3,7 +3,7 @@ import { IColour } from '../people/interfaces/icolour';
 export class ColourNamesValueConverter {
 
   toView(colours: IColour[]) {
-
+    return colours.map(c => c.name).join(', ');
     // TODO: Step 4
     //
     // Implement the value converter function.
