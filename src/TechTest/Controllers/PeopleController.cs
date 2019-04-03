@@ -23,10 +23,10 @@ namespace TechTest.Controllers
            
             // TODO: Step 1 below..
             
-            var person = PersonRepository.GetAll();
-            return Ok(person);
+            var people = this.PersonRepository.GetAll();
 
-            throw new NotImplementedException();
+            
+            return this.Ok(people);
         }
 
         [HttpGet("{id}")]
@@ -34,16 +34,19 @@ namespace TechTest.Controllers
         {
             // TODO: Step 2 below..
             
-            var person = PersonRepository.Update(id);
+           var person = this.PersonRepository.Get(id);
 
             if (person == null)
             {
                 return NotFound();
             }
+            else
+            {
+                return this.Ok(person);
+            }
 
-            return Ok(person);
             
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         [HttpPut("{id}")]
@@ -51,21 +54,20 @@ namespace TechTest.Controllers
         {
             // TODO: Step 3 below..
             
-            
-            if (personUpdate.Id != id)
+           var person = this.PersonRepository.Get(id);
+
+            if (person == null)
             {
                 return NotFound();
             }
-
-            if (PersonRepository.Update(id) == null)
+            else
             {
-                return NotFound();
+                this.PersonRepository.Update(person);
+                return this.Ok(person);
             }
-
-            PersonRepository.Update(id);
-            return RedirectToAction("Index");
-
-            throw new NotImplementedException();
+             
+           
+            //throw new NotImplementedException();
         }
     }
 }
