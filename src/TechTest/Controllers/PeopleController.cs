@@ -21,12 +21,7 @@ namespace TechTest.Controllers
         {
             
            
-            // TODO: Step 1
-            //
-            // Implement a JSON endpoint that returns the full list
-            // of people from the PeopleRepository. If there are zero
-            // people returned from PeopleRepository then an empty
-            // JSON array should be returned.
+            // TODO: Step 1 below..
             
             var person = PersonRepository.GetAll();
             return Ok(person);
@@ -37,12 +32,7 @@ namespace TechTest.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            // TODO: Step 2
-            //
-            // Implement a JSON endpoint that returns a single person
-            // from the PeopleRepository based on the id parameter.
-            // If null is returned from the PeopleRepository with
-            // the supplied id then a NotFound should be returned.
+            // TODO: Step 2 below..
             
             var person = PersonRepository.Update(id);
 
@@ -59,14 +49,8 @@ namespace TechTest.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(int id, PersonUpdate personUpdate)
         {
-            // TODO: Step 3
-            //
-            // Implement an endpoint that receives a JSON object to
-            // update a person using the PeopleRepository based on
-            // the id parameter. Once the person has been successfully
-            // updated, the person should be returned from the endpoint.
-            // If null is returned from the PeopleRepository then a
-            // NotFound should be returned.
+            // TODO: Step 3 below..
+            
             
             if (personUpdate.Id != id)
             {
