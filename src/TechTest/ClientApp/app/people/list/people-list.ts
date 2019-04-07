@@ -6,7 +6,8 @@ import { IPerson } from '../interfaces/iperson';
 @autoinject
 export class PeopleList {
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
+  
 
   heading = 'People';
 
@@ -16,6 +17,7 @@ export class PeopleList {
     const response = await this.http.fetch('/people');
     const people = await response.json();
 
-    this.people = people.map((person: IPerson) => new Person(person));
+      this.people = people.map((person: IPerson) => new Person(person));
   }
 }
+
