@@ -41,7 +41,7 @@ export class PersonEdit {
     
     console.log(this.person)
            this.http.fetch(`/people?id=${this.person.id}`, {
-               method: "PUT",
+               method: "POST",
                body: JSON.stringify(this.person),
               headers: {
                   'Content-Type': 'application/json',

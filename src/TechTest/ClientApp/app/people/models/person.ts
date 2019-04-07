@@ -28,10 +28,23 @@ export class Person implements IPerson {
   @computedFrom('fullName')
   get palindrome(): boolean {
 
-    // TODO: Step 5 below..
-    
-    return this.fullName.split('').reverse().join('') === this.fullName;
+    // TODO: Step 5
+    //
+    // Implement the palindrome computed field.
+    // True should be returned When the FullName is spelt the same
+    // forwards as it is backwards. The match should ignore any
+    // spaces and should also be case insensitive.
+    //
+    // Example: 'Bo Bob' is a palindrome.
 
-    return false;
+      /* remove special characters, spaces and make lowercase*/
+      var lowercase = this.lastName.replace(/[^A-Z0-9]/ig, "").toLowerCase();
+      /* reverse lowercase for comparison*/
+      var checkPalindrome = lowercase.split('').reverse().join('');
+      /* Check to see if we have a Palindrome*/
+      if (lowercase === checkPalindrome) {
+          return true;
+      }
+        return false;
   }
 }

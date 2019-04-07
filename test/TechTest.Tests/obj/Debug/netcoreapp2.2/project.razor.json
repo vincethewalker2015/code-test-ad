@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "/Users/vincethewalker/microsoft/code-test-ad/test/TechTest.Tests/TechTest.Tests.csproj",
+  "TargetFramework": "netcoreapp2.2",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "MVC-2.1",
+    "LanguageVersion": "2.1",
+    "Extensions": [
+      {
+        "ExtensionName": "MVC-2.1"
+      }
+    ]
+  }
+}
