@@ -13,31 +13,46 @@ export class ColourNamesValueConverter {
         //
         // Example: 'Blue, Green, Red'
 
-        let sortedColours = colours.sort(this.compare)
+        var colourNames = [];
+      var i;
 
-        let sResult = '';
-        for (let i = 0; i < sortedColours.length; i++) {
-            if (i == 0) {
-                sResult = sortedColours[i].name + ', ';
-            }
-            else {
-                sResult = sResult + sortedColours[i].name + ', '
-            }
-        }
-        return sResult;
-    }
-    private compare(n1, n2) {
-        if (n1.name > n2.name) {
-            return 1;
-        }
+      for (i = 0; i < colours.length; i++)
+      {
+          colourNames[i] = colours[i].name;
+      }
 
-        if (n1.name < n2.name) {
-            return -1;
-        }
+      colourNames.sort();
 
-        return 0;
-    }
-}
+      return colourNames.join(', ');
+        
+
+        // FORMER OPTION BELOW
+
+        //let sortedColours = colours.sort(this.compare)
+
+        //let sResult = '';
+        //for (let i = 0; i < sortedColours.length; i++) {
+          //  if (i == 0) {
+            //    sResult = sortedColours[i].name + ', ';
+            //}
+            //else {
+              //  sResult = sResult + sortedColours[i].name + ', '
+            //}
+        //}
+        //return sResult;
+    //}
+    //private compare(n1, n2) {
+      //  if (n1.name > n2.name) {
+        //    return 1;
+        //}
+
+       // if (n1.name < n2.name) {
+         //   return -1;
+        //}
+
+      //  return 0;
+    //}
+//}
     //    let sortedColours = colours.sort(this.compare)
 
     //    let sResult = '';
@@ -62,5 +77,5 @@ export class ColourNamesValueConverter {
     //        return 1;
     //    }
     //    return 0;
-    //}
-//}
+    }
+}

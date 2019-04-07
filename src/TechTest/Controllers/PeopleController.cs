@@ -83,9 +83,9 @@ namespace TechTest.Controllers
             };
 
             // send the updated details to the Repository
-            var responce = PersonRepository.Update(updatedPerson);
+            var response = PersonRepository.Update(updatedPerson);
 
-            return this.Ok(responce);
+            return this.Ok(response);
         }
     }
 }
