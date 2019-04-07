@@ -8,57 +8,56 @@ import { IPerson } from '../interfaces/iperson';
 @autoinject
 export class PersonEdit {
 
-  constructor(private http: HttpClient, private router: Router) { }
+    constructor(private http: HttpClient, private router: Router) { }
 
-  private heading: string;
-  private person: Person;
-  private colourOptions: IColour[] = [];
-  private routerConfig: RouteConfig;
+    private heading: string;
+    private person: Person;
+    private colourOptions: IColour[] = [];
+    private routerConfig: RouteConfig;
 
-  async activate(params, routerConfig: RouteConfig) {
-    this.routerConfig = routerConfig;
+    async activate(params, routerConfig: RouteConfig) {
+        this.routerConfig = routerConfig;
 
-    const personResponse = await this.http.fetch(`/people/${params.id}`);
-    this.personFetched(await personResponse.json());
+        const personResponse = await this.http.fetch(`/people/${params.id}`);
+        this.personFetched(await personResponse.json());
 
-    const colourResponse = await this.http.fetch('/colours');
-    this.colourOptions = await colourResponse.json() as IColour[];
-  }
+        const colourResponse = await this.http.fetch('/colours');
+        this.colourOptions = await colourResponse.json() as IColour[];
+    }
 
-  personFetched(person: IPerson): void {
-    this.person = new Person(person)
-    this.heading = `Update ${this.person.fullName}`;
-    this.routerConfig.navModel.setTitle(`Update ${this.person.fullName}`);
-  }
+    personFetched(person: IPerson): void {
+        this.person = new Person(person)
+        this.heading = `Update ${this.person.fullName}`;
+        this.routerConfig.navModel.setTitle(`Update ${this.person.fullName}`);
+    }
 
-  colourMatcher(favouriteColour: IColour, checkBoxColour: IColour) {
-    return favouriteColour.id === checkBoxColour.id;
-  }
+    colourMatcher(favouriteColour: IColour, checkBoxColour: IColour) {
+        return favouriteColour.id === checkBoxColour.id;
+    }
 
-  async submit() {
+    async submit(routerConfig: RouteConfig) {
+        this.routerConfig = routerConfig;
 
-    // TODO: Step 7 below.. 
-    
-    console.log(this.person)
-           this.http.fetch(`/people?id=${this.person.id}`, {
-               method: "POST",
-               body: JSON.stringify(this.person),
-              headers: {
-                  'Content-Type': 'application/json',
-                   'Accept': 'application/json'
-              }
-           })
+        // TODO: Step 7
+        //
+        // Implement the submit and save logic.
+        // Send a JSON request to the API with the newly updated
+        // this.person object. If the response is successful then
+        // the user should be navigated to the list page.
 
-           .then(response => response.json())
-            .then(data => {
-                   console.log(data);
-               });
+        await this.http.fetch(`/people/${this.person.id}`, {
+            method: 'put',
+            body: json(this.person)
+        })
+            .then(response => response.json())
+            .then(data => {console.log(data)})
+            .then(savedPerson => {
+                this.router.navigate('/people');
+            });
+
+    }
+
+    cancel() {
         this.router.navigate('people');
-
-    throw new Error('Not Implemented');
-  }
-
-  cancel() {
-    this.router.navigate('people');
-  }
+    }
 }
