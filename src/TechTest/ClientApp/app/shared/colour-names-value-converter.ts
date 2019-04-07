@@ -12,29 +12,55 @@ export class ColourNamesValueConverter {
         // alphabetically and there should not be a trailing comma.
         //
         // Example: 'Blue, Green, Red'
+
         let sortedColours = colours.sort(this.compare)
 
-        let result = '';
+        let sResult = '';
         for (let i = 0; i < sortedColours.length; i++) {
             if (i == 0) {
-                result = sortedColours[i] + ', ';
+                sResult = sortedColours[i].name + ', ';
             }
             else {
-                result = result + sortedColours[i] + ', '
+                sResult = sResult + sortedColours[i].name + ', '
             }
         }
-
-        return result;
+        return sResult;
     }
-
-    private compare(a, b) {
-        if (a.Name.toLowerCase() < b.Name.toLowerCase()) {
-            return -1;
-        }
-        if (a.Name.toLowerCase() > b.Name.toLowerCase()) {
+    private compare(n1, n2) {
+        if (n1.name > n2.name) {
             return 1;
         }
+
+        if (n1.name < n2.name) {
+            return -1;
+        }
+
         return 0;
     }
-
 }
+    //    let sortedColours = colours.sort(this.compare)
+
+    //    let sResult = '';
+    //    for (let i = 0; i < sortedColours.length; i++) {
+    //        if (i == 0) {
+    //            sResult = sortedColours[i].name + ', ';
+    //        }
+    //        else {
+    //            sResult = sResult + sortedColours[i].name + ', '
+    //        }
+    //    }
+
+    //    return sResult;
+    //}
+
+    //private compare(a, b) {
+    //    if (a.Name < b.Name) {
+
+    //        return -1;
+    //    }
+    //    if (a.Name > b.Name) {
+    //        return 1;
+    //    }
+    //    return 0;
+    //}
+//}
